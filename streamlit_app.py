@@ -11,7 +11,7 @@ if user == "Other":
     user = st.text_input("Enter your name:")
 
 # Currency selector
-currency = st.selectbox("💰 Choose currency:", options=["USD", "EUR", "IDR", "JPY"])
+currency = st.selectbox("💰 Choose currency:", options=["EUR", "IDR"])
 
 # Input form
 with st.form("expense_form"):
