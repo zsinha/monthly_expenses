@@ -26,21 +26,24 @@ with st.form("expense_form"):
 
 # Summary section
 df, total = get_monthly_summary(user, currency)
-st.metric("📆 This Month's Total", f"{total:.2f} {currency}")
+formatted_total = f"{total:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+st.metric("📆 This Month's Total", f"{formatted_total} {currency}")
 with st.expander(f"📋 {user}'s Expenses This Month"):
-    st.dataframe(df)
+    if not df.empty:
+        df_display = df.copy()
+        df_display["amount"] = df_display["amount"].apply(
+            lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        )
+        st.dataframe(df_display)
+    else:
+        st.info("No expenses to show.")
 
 # Show totals for all currencies
 st.subheader(f"🌐 {user}'s Total Expenses by Currency (This Month)")
-
 summary_df = get_monthly_totals_by_currency(user)
-
 if not summary_df.empty:
-    # Format amount column with thousand separator (dot) and comma for decimals
     summary_df["amount"] = summary_df["amount"].apply(
-        lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-    )
-
+        lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
     st.table(summary_df.rename(columns={"currency": "Currency", "amount": "Total"}))
 else:
     st.info("No expenses yet this month.")
