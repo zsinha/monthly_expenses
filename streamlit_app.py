@@ -1,5 +1,5 @@
 import streamlit as st
-from trial import add_expense, get_monthly_summary
+from function import add_expense, get_monthly_summary
 
 st.set_page_config(page_title="Expense Tracker", layout="centered")
 
