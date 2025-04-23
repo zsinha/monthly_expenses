@@ -32,10 +32,17 @@ with st.expander(f"📋 {user}'s Expenses This Month"):
 
 # Show totals for all currencies
 st.subheader(f"🌐 {user}'s Total Expenses by Currency (This Month)")
+
 summary_df = get_monthly_totals_by_currency(user)
+
 if not summary_df.empty:
-    st.dataframe(summary_df)
-    st.bar_chart(summary_df.set_index("currency"))
+    # Format amount column with thousand separator (dot) and comma for decimals
+    summary_df["amount"] = summary_df["amount"].apply(
+        lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    )
+
+    st.table(summary_df.rename(columns={"currency": "Currency", "amount": "Total"}))
 else:
     st.info("No expenses yet this month.")
+
 
