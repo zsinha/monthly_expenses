@@ -15,7 +15,7 @@ currency = st.selectbox("💰 Choose currency:", options=["EUR", "IDR"])
 
 # Input form
 with st.form("expense_form"):
-    user_input = st.text_input("Enter expense (e.g., Starbucks 5$)")
+    user_input = st.text_input("Enter expense (e.g., Starbucks 5)")
     submit = st.form_submit_button("Add Expense")
 
     if submit:
