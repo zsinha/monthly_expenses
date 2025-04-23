@@ -31,3 +31,15 @@ st.metric("📆 This Month's Total", f"{total:.2f} {currency}")
 
 with st.expander(f"📋 {user}'s Expenses This Month"):
     st.dataframe(df)
+
+# Show totals for all currencies
+st.subheader(f"🌐 {user}'s Total Expenses by Currency (This Month)")
+
+summary_df = get_monthly_totals_by_currency(user)
+
+if not summary_df.empty:
+    st.dataframe(summary_df)
+    st.bar_chart(summary_df.set_index("currency"))
+else:
+    st.info("No expenses yet this month.")
+
