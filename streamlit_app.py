@@ -29,4 +29,5 @@ with st.form("expense_form"):
 df, total = get_monthly_summary(user)
 st.metric("📆 This Month's Total", f"{total:.2f} {currency}")
 
-with st.expander(f"📋 {user}'s Expenses
+with st.expander(f"📋 {user}'s Expenses This Month"):
+    st.dataframe(df)
