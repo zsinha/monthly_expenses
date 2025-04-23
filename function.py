@@ -38,3 +38,14 @@ def get_monthly_summary(user, currency):
     total = user_df["amount"].sum()
 
     return user_df, total
+
+def get_monthly_totals_by_currency(user):
+    init_file()
+    df = pd.read_csv(FILE)
+    current_month = datetime.now().strftime("%Y-%m")
+    monthly_df = df[df["date"].str.startswith(current_month)]
+
+    user_df = monthly_df[monthly_df["user"] == user]
+
+    grouped = user_df.groupby("currency")["amount"].sum().reset_index()
+    return grouped
