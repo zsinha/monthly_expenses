@@ -12,9 +12,9 @@ def init_file():
 
 def add_expense(user, currency, user_input):
     init_file()
-    match = re.match(r"(.+?)\s+(\d+(?:\.\d+)?)\$", user_input.strip())
+    match = re.match(r"(.+?)\s+(\d+(?:\.\d+)?)$", user_input.strip())
     if not match:
-        return False, "❌ Format error. Use: Item 5$"
+        return False, "❌ Format error. Use: Item 5"
 
     item = match.group(1).strip()
     amount = float(match.group(2))
