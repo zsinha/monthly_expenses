@@ -30,4 +30,4 @@ def get_monthly_summary(user):
     monthly_df = df[df["date"].str.startswith(current_month)]
     user_df = monthly_df[monthly_df["user"] == user]
     total = user_df["amount"].sum()
-    return
+    return user_df, total
