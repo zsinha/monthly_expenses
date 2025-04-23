@@ -1,3 +1,8 @@
+import pandas as pd
+import os
+import re
+from datetime import datetime
+
 FILE = "expenses.csv"
 
 def init_file():
