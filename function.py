@@ -28,11 +28,13 @@ def add_expense(user, currency, user_input):
 
     return True, f"✅ Added: {item} {amount} {currency} (by {user})"
 
-def get_monthly_summary(user):
+def get_monthly_summary(user, currency):
     init_file()
     df = pd.read_csv(FILE)
     current_month = datetime.now().strftime("%Y-%m")
     monthly_df = df[df["date"].str.startswith(current_month)]
-    user_df = monthly_df[monthly_df["user"] == user]
+
+    user_df = monthly_df[(monthly_df["user"] == user) & (monthly_df["currency"] == currency)]
     total = user_df["amount"].sum()
+
     return user_df, total
