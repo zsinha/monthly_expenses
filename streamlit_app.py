@@ -6,7 +6,7 @@ st.set_page_config(page_title="Expense Tracker", layout="centered")
 st.title("💸 Expense Tracker")
 
 # Select user
-user = st.selectbox("👤 Select or enter your name:", options=["Ali", "Sarah", "Guest", "Other"])
+user = st.selectbox("👤 Select or enter your name:", options=["Papah", "Mamah", "Guest", "Other"])
 if user == "Other":
     user = st.text_input("Enter your name:")
 
