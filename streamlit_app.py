@@ -26,7 +26,7 @@ with st.form("expense_form"):
             st.error(message)
 
 # Summary section
-df, total = get_monthly_summary(user)
+df, total = get_monthly_summary(user, currency)
 st.metric("📆 This Month's Total", f"{total:.2f} {currency}")
 
 with st.expander(f"📋 {user}'s Expenses This Month"):
