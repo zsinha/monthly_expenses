@@ -1,4 +1,3 @@
-# trial.py
 import pandas as pd
 import os
 import re
@@ -6,9 +5,9 @@ from datetime import datetime
 
 FILE = "expenses.csv"
 
-# Create file with headers if not exist
+# 💡 Create file WITH headers if it doesn't exist or is empty
 def init_file():
-    if not os.path.exists(FILE):
+    if not os.path.exists(FILE) or os.path.getsize(FILE) == 0:
         df = pd.DataFrame(columns=["date", "item", "amount"])
         df.to_csv(FILE, index=False)
 
